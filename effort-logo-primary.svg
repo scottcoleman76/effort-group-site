@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 74" width="350" height="74">
+  <title>Effort logo, primary</title>
+  <g transform="translate(0,23)">
+    <path d="M95,0 L6.5,0 A6.5,6.5 0 0 0 6.5,13 L95,13 Z" fill="#0B7B9E"/>
+    <path d="M95,15 L28.5,15 A6.5,6.5 0 0 0 28.5,28 L95,28 Z" fill="#0B7B9E"/>
+    <path d="M95,30 L50.5,30 A6.5,6.5 0 0 0 50.5,43 L95,43 Z" fill="#0B7B9E"/>
+  </g>
+  <text x="101" y="66" font-family="Helvetica, Arial, sans-serif" font-size="60" font-weight="700">
+    <tspan fill="#0B7B9E">E</tspan><tspan fill="#0A2540">FFORT</tspan>
+  </text>
+</svg>
