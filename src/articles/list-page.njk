@@ -27,19 +27,16 @@ eleventyExcludeFromCollections: true
     <p class="sub">Thinking on leadership, organizational strategy, and growth from our team.</p>
 
     <input type="text" id="search-box" placeholder="Search articles...">
+
     <div class="tag-filters" id="tag-filters">
-      <button class="tag-filter-btn active" data-tag="all">All</button>
-      {% for t in allTags %}<button class="tag-filter-btn" data-tag="{{ t }}">{{ t }}</button>{% endfor %}
+      {% for c in allCategories %}<a class="tag-filter-btn" href="/articles/category/{{ c | slugify }}/">{{ c }}</a>{% endfor %}
     </div>
 
     <div id="article-list">
       {% for a in articles %}
       <a class="card article-card" href="/articles/{{ a.slug }}/"
-         data-title="{{ a.title | lower }}" data-excerpt="{{ a.excerpt | lower }}"
-         data-tags="{{ a.tags | join(',') | lower }}">
-        <div class="meta">{{ a.author }} &middot; {{ a.date | dateStr }}
-          {% if a.tags %} &middot; {% for t in a.tags %}{{ t }}{% if not loop.last %}, {% endif %}{% endfor %}{% endif %}
-        </div>
+         data-title="{{ a.title | lower }}" data-excerpt="{{ a.excerpt | lower }}">
+        <div class="meta">{{ a.author }} &middot; {{ a.date | dateStr }}{% if a.category %} &middot; {{ a.category }}{% endif %}</div>
         <h2>{{ a.title }}</h2>
         <p>{{ a.excerpt }}</p>
       </a>
@@ -53,32 +50,18 @@ eleventyExcludeFromCollections: true
 
 <script>
   const searchBox = document.getElementById('search-box');
-  const tagButtons = document.querySelectorAll('.tag-filter-btn');
   const cards = document.querySelectorAll('.article-card');
   const noResults = document.getElementById('no-results');
-  let activeTag = 'all';
 
-  function applyFilters() {
+  searchBox.addEventListener('input', () => {
     const q = searchBox.value.trim().toLowerCase();
     let visibleCount = 0;
     cards.forEach(card => {
-      const matchesText = !q || card.dataset.title.includes(q) || card.dataset.excerpt.includes(q);
-      const matchesTag = activeTag === 'all' || card.dataset.tags.split(',').includes(activeTag.toLowerCase());
-      const show = matchesText && matchesTag;
+      const show = !q || card.dataset.title.includes(q) || card.dataset.excerpt.includes(q);
       card.style.display = show ? '' : 'none';
       if (show) visibleCount++;
     });
     noResults.style.display = visibleCount === 0 ? 'block' : 'none';
-  }
-
-  searchBox.addEventListener('input', applyFilters);
-  tagButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      tagButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      activeTag = btn.dataset.tag;
-      applyFilters();
-    });
   });
 </script>
 </body>
