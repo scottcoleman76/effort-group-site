@@ -33,7 +33,7 @@ eleventyExcludeFromCollections: true
 
     <div id="article-list">
       {% for a in articles %}
-        {% if a.category == category %}
+        {% if category in a.category %}
         <a class="card" href="/articles/{{ a.slug }}/">
           <div class="meta">{{ a.author }} &middot; {{ a.date | dateStr }}</div>
           <h2>{{ a.title }}</h2>
