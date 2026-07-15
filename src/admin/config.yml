@@ -23,10 +23,16 @@ collections:
         options: ["Angie Coleman", "Scott Coleman", "Emma Coleman"]
       - { label: "Publish Date", name: "date", widget: "datetime" }
       - { label: "Cover Image", name: "image", widget: "image", required: false }
-      - label: "Categories / Tags"
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options: ["Strategy", "AI", "Engagement", "Teams", "Leadership", "Economic", "Coaching", "Culture"]
+        hint: "Pick the single best-fit topic. This becomes the article's main indexable section."
+      - label: "Tags (optional, additional keywords)"
         name: "tags"
         widget: "list"
-        hint: "Type a tag and press enter. Reuse existing ones (Strategy, AI, Engagement, Teams, Leadership, Economic, Coaching, Culture) where they fit, or add new ones as needed."
+        required: false
+        hint: "Optional extra keywords for on-site search. The Category above is what matters most for search engines."
       - { label: "Excerpt (short summary shown on the articles list)", name: "excerpt", widget: "text" }
       - { label: "Body", name: "body", widget: "markdown" }
       - label: "Sources"
