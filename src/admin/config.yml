@@ -26,12 +26,12 @@ collections:
       - label: "Categories (pick 2-3 core topics — each becomes its own indexable page)"
         name: "category"
         widget: "list"
-        hint: "Type a category and press enter. Reuse existing ones (Strategy, AI, Engagement, Teams, Leadership, Economic, Coaching, Culture) where they fit, or add new ones. Keep this to 2-3 per article for the strongest SEO signal."
+        hint: "Click '+ Add' below to add each category. Reuse existing ones (Strategy, AI, Engagement, Teams, Leadership, Economic, Coaching, Culture) where they fit, or add new ones. Keep this to 2-3 per article for the strongest SEO signal."
       - label: "Tags (optional, additional keywords)"
         name: "tags"
         widget: "list"
         required: false
-        hint: "Optional extra keywords for on-site search. Can be as many as you like."
+        hint: "Click '+ Add' below to add each tag. Can be as many as you like."
       - { label: "Excerpt (short summary shown on the articles list)", name: "excerpt", widget: "text" }
       - { label: "Body", name: "body", widget: "markdown" }
       - label: "Sources"
