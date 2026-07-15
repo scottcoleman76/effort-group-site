@@ -25,9 +25,8 @@ collections:
       - { label: "Cover Image", name: "image", widget: "image", required: false }
       - label: "Categories / Tags"
         name: "tags"
-        widget: "select"
-        multiple: true
-        options: ["Strategy", "AI", "Engagement", "Teams", "Leadership", "Economic", "Coaching", "Culture"]
+        widget: "list"
+        hint: "Type a tag and press enter. Reuse existing ones (Strategy, AI, Engagement, Teams, Leadership, Economic, Coaching, Culture) where they fit, or add new ones as needed."
       - { label: "Excerpt (short summary shown on the articles list)", name: "excerpt", widget: "text" }
       - { label: "Body", name: "body", widget: "markdown" }
       - label: "Sources"
