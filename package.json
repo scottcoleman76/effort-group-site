@@ -1,0 +1,11 @@
+{
+  "name": "effort-group-site",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "markdown-it": "^13.0.2"
+  }
+}

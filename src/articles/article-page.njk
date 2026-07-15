@@ -1,0 +1,87 @@
+---
+pagination:
+  data: articles
+  size: 1
+  alias: article
+permalink: "/articles/{{ article.slug }}/index.html"
+eleventyExcludeFromCollections: true
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ article.title }} | The Effort Group</title>
+<meta name="description" content="{{ article.excerpt }}">
+<link rel="canonical" href="https://theeffortgroup.com/articles/{{ article.slug }}/">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{ article.title }}">
+<meta property="og:description" content="{{ article.excerpt }}">
+<meta property="og:url" content="https://theeffortgroup.com/articles/{{ article.slug }}/">
+{% if article.image %}<meta property="og:image" content="{{ article.image }}">{% endif %}
+<meta name="twitter:card" content="summary_large_image">
+
+{% set authorInfo = authors[article.author] %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": {{ article.title | json | safe }},
+  "author": {
+    "@type": "Person",
+    "name": {{ article.author | json | safe }}
+    {% if authorInfo and authorInfo.linkedin %}, "sameAs": [{{ authorInfo.linkedin | json | safe }}]{% endif %}
+    {% if authorInfo and authorInfo.title %}, "jobTitle": {{ authorInfo.title | json | safe }}{% endif %}
+  },
+  "datePublished": {{ article.date | isoDate | json | safe }},
+  "description": {{ article.excerpt | json | safe }},
+  "publisher": { "@type": "Organization", "name": "The Effort Group", "url": "https://theeffortgroup.com" }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/shared.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/">The Effort Group</a>
+    <a class="back" href="/articles/">&larr; All articles</a>
+  </div>
+</header>
+<main>
+  <div class="wrap" style="max-width:760px;">
+    <div class="meta">{{ article.author }} &middot; {{ article.date | dateStr }}</div>
+    <h1>{{ article.title }}</h1>
+    {% if article.tags %}
+      <div style="margin-bottom:28px;">
+        {% for t in article.tags %}<span class="tag-pill">{{ t }}</span>{% endfor %}
+      </div>
+    {% endif %}
+    {% if article.image %}<img class="cover" src="{{ article.image }}" alt="{{ article.title }}">{% endif %}
+    <div class="body-content">{{ article.body | markdownify | safe }}</div>
+    {% if article.sources and article.sources.length %}
+    <div class="sources">
+      <h3>Sources</h3>
+      <ul>{% for s in article.sources %}<li>{{ s }}</li>{% endfor %}</ul>
+    </div>
+    {% endif %}
+
+    {% if authorInfo %}
+    <div class="author-bio">
+      <div class="author-avatar">{{ article.author | initials }}</div>
+      <div>
+        <div class="author-name">{{ article.author }}</div>
+        <div class="author-title">{{ authorInfo.title }}{% if authorInfo.credentials %} &middot; {{ authorInfo.credentials }}{% endif %}</div>
+        <p class="author-desc">{{ authorInfo.bio }}</p>
+        {% if authorInfo.linkedin %}<a class="author-link" href="{{ authorInfo.linkedin }}" rel="author">View LinkedIn profile &rarr;</a>{% endif %}
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</main>
+</body>
+</html>
