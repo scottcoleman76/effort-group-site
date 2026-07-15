@@ -1,9 +1,9 @@
 ---
 pagination:
-  data: articles
+  data: allCategories
   size: 1
-  alias: article
-permalink: "/articles/{{ article.slug }}/index.html"
+  alias: category
+permalink: "/articles/category/{{ category | slugify }}/index.html"
 eleventyExcludeFromCollections: true
 ---
 <!DOCTYPE html>
@@ -11,36 +11,9 @@ eleventyExcludeFromCollections: true
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ article.title }} | The Effort Group</title>
-<meta name="description" content="{{ article.excerpt }}">
-<link rel="canonical" href="https://theeffortgroup.com/articles/{{ article.slug }}/">
-
-<meta property="og:type" content="article">
-<meta property="og:title" content="{{ article.title }}">
-<meta property="og:description" content="{{ article.excerpt }}">
-<meta property="og:url" content="https://theeffortgroup.com/articles/{{ article.slug }}/">
-{% if article.image %}<meta property="og:image" content="{{ article.image }}">{% endif %}
-<meta name="twitter:card" content="summary_large_image">
-
-{% set authorInfo = authors[article.author] %}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": {{ article.title | json | safe }},
-  "author": {
-    "@type": "Person",
-    "name": {{ article.author | json | safe }}
-    {% if authorInfo and authorInfo.linkedin %}, "sameAs": [{{ authorInfo.linkedin | json | safe }}]{% endif %}
-    {% if authorInfo and authorInfo.title %}, "jobTitle": {{ authorInfo.title | json | safe }}{% endif %}
-  },
-  "datePublished": {{ article.date | isoDate | json | safe }},
-  "articleSection": {{ article.category | json | safe }},
-  "description": {{ article.excerpt | json | safe }},
-  "publisher": { "@type": "Organization", "name": "The Effort Group", "url": "https://theeffortgroup.com" }
-}
-</script>
-
+<title>{{ category }} Articles | The Effort Group</title>
+<meta name="description" content="Articles on {{ category }} from the team at The Effort Group.">
+<link rel="canonical" href="https://theeffortgroup.com/articles/category/{{ category | slugify }}/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
@@ -54,33 +27,21 @@ eleventyExcludeFromCollections: true
   </div>
 </header>
 <main>
-  <div class="wrap" style="max-width:760px;">
-    <div class="meta">{{ article.author }} &middot; {{ article.date | dateStr }}</div>
-    <h1>{{ article.title }}</h1>
-    <div style="margin-bottom:28px;">
-      {% if article.category %}<a class="tag-pill" href="/articles/category/{{ article.category | slugify }}/" style="background:var(--navy); color:var(--off-white); border-color:var(--navy);">{{ article.category }}</a>{% endif %}
-      {% for t in article.tags %}<span class="tag-pill">{{ t }}</span>{% endfor %}
-    </div>
-    {% if article.image %}<img class="cover" src="{{ article.image }}" alt="{{ article.title }}">{% endif %}
-    <div class="body-content">{{ article.body | markdownify | safe }}</div>
-    {% if article.sources and article.sources.length %}
-    <div class="sources">
-      <h3>Sources</h3>
-      <ul>{% for s in article.sources %}<li>{{ s }}</li>{% endfor %}</ul>
-    </div>
-    {% endif %}
+  <div class="wrap">
+    <h1 class="page-title">{{ category }}</h1>
+    <p class="sub">Articles on {{ category | lower }} from our team.</p>
 
-    {% if authorInfo %}
-    <div class="author-bio">
-      <div class="author-avatar">{{ article.author | initials }}</div>
-      <div>
-        <div class="author-name">{{ article.author }}</div>
-        <div class="author-title">{{ authorInfo.title }}{% if authorInfo.credentials %} &middot; {{ authorInfo.credentials }}{% endif %}</div>
-        <p class="author-desc">{{ authorInfo.bio }}</p>
-        {% if authorInfo.linkedin %}<a class="author-link" href="{{ authorInfo.linkedin }}" rel="author">View LinkedIn profile &rarr;</a>{% endif %}
-      </div>
+    <div id="article-list">
+      {% for a in articles %}
+        {% if category in a.category %}
+        <a class="card" href="/articles/{{ a.slug }}/">
+          <div class="meta">{{ a.author }} &middot; {{ a.date | dateStr }}</div>
+          <h2>{{ a.title }}</h2>
+          <p>{{ a.excerpt }}</p>
+        </a>
+        {% endif %}
+      {% endfor %}
     </div>
-    {% endif %}
   </div>
 </main>
 </body>
