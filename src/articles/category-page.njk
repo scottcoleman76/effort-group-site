@@ -1,0 +1,48 @@
+---
+pagination:
+  data: allCategories
+  size: 1
+  alias: category
+permalink: "/articles/category/{{ category | slugify }}/index.html"
+eleventyExcludeFromCollections: true
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ category }} Articles | The Effort Group</title>
+<meta name="description" content="Articles on {{ category }} from the team at The Effort Group.">
+<link rel="canonical" href="https://theeffortgroup.com/articles/category/{{ category | slugify }}/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/shared.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/">The Effort Group</a>
+    <a class="back" href="/articles/">&larr; All articles</a>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+    <h1 class="page-title">{{ category }}</h1>
+    <p class="sub">Articles on {{ category | lower }} from our team.</p>
+
+    <div id="article-list">
+      {% for a in articles %}
+        {% if a.category == category %}
+        <a class="card" href="/articles/{{ a.slug }}/">
+          <div class="meta">{{ a.author }} &middot; {{ a.date | dateStr }}</div>
+          <h2>{{ a.title }}</h2>
+          <p>{{ a.excerpt }}</p>
+        </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</main>
+</body>
+</html>
