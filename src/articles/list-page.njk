@@ -28,18 +28,21 @@ eleventyExcludeFromCollections: true
 
     <input type="text" id="search-box" placeholder="Search articles...">
 
-    <div class="tag-filters" id="tag-filters">
-      {% for c in allCategories %}<a class="tag-filter-btn" href="/articles/category/{{ c | slugify }}/">{{ c }}</a>{% endfor %}
-    </div>
-
     <div id="article-list">
       {% for a in articles %}
-      <a class="card article-card" href="/articles/{{ a.slug }}/"
-         data-title="{{ a.title | lower }}" data-excerpt="{{ a.excerpt | lower }}">
-        <div class="meta">{{ a.author }} &middot; {{ a.date | dateStr }}{% set catVals = a.category | catList %}{% if catVals.length %} &middot; {{ catVals | join(', ') }}{% endif %}</div>
-        <h2>{{ a.title }}</h2>
-        <p>{{ a.excerpt }}</p>
-      </a>
+      <div class="card article-card" data-title="{{ a.title | lower }}" data-excerpt="{{ a.excerpt | lower }}">
+        <div class="meta">{{ a.author }} &middot; {{ a.date | dateStr }}</div>
+        <a href="/articles/{{ a.slug }}/" style="display:block;">
+          <h2>{{ a.title }}</h2>
+          <p>{{ a.excerpt }}</p>
+        </a>
+        {% set catVals = a.category | catList %}
+        {% if catVals.length %}
+        <div style="margin-top:12px;">
+          {% for c in catVals %}<a class="tag-filter-btn" style="font-size:10px; padding:4px 10px;" href="/articles/category/{{ c | slugify }}/">{{ c }}</a>{% endfor %}
+        </div>
+        {% endif %}
+      </div>
       {% else %}
       <p class="empty">No articles published yet.</p>
       {% endfor %}
