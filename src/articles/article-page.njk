@@ -59,7 +59,6 @@ eleventyExcludeFromCollections: true
     <h1>{{ article.title }}</h1>
     <div style="margin-bottom:28px;">
       {% for c in article.category | catList %}<a class="tag-pill" href="/articles/category/{{ c | slugify }}/" style="background:var(--navy); color:var(--off-white); border-color:var(--navy);">{{ c }}</a>{% endfor %}
-      {% for t in article.tags | catList %}<span class="tag-pill">{{ t }}</span>{% endfor %}
     </div>
     {% if article.image %}<img class="cover" src="{{ article.image }}" alt="{{ article.title }}">{% endif %}
     <div class="body-content">{{ article.body | markdownify | safe }}</div>
