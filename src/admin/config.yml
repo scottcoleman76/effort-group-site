@@ -26,16 +26,12 @@ collections:
       - label: "Categories (pick 2-3 core topics — each becomes its own indexable page)"
         name: "category"
         widget: "list"
-        summary: "{{fields.value}}"
-        field: { label: "Category", name: "value", widget: "string" }
-        hint: "Click '+ Add Category' to add each one. Reuse existing ones (Strategy, AI, Engagement, Teams, Leadership, Economic, Coaching, Culture) where they fit, or add new ones. Keep this to 2-3 per article for the strongest SEO signal."
+        hint: "Type your categories separated by commas, e.g. Leadership, Coaching, Strategy — note: typing a space directly into this box doesn't work due to an editor bug, so type in Notes/Word first, then paste it in here. Reuse existing ones (Strategy, AI, Engagement, Teams, Leadership, Economic, Coaching, Culture) where they fit, or add new ones. Keep this to 2-3 per article for the strongest SEO signal."
       - label: "Tags (optional, additional keywords)"
         name: "tags"
         widget: "list"
         required: false
-        summary: "{{fields.value}}"
-        field: { label: "Tag", name: "value", widget: "string" }
-        hint: "Click '+ Add Tag' to add each one. Can be as many as you like."
+        hint: "Type your tags separated by commas, e.g. Remote Work, Q3 Planning, Retention — note: typing a space directly into this box doesn't work due to an editor bug, so type in Notes/Word first, then paste it in here."
       - { label: "Excerpt (short summary shown on the articles list)", name: "excerpt", widget: "text" }
       - { label: "Body", name: "body", widget: "markdown" }
       - label: "Sources"
