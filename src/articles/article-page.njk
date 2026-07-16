@@ -58,15 +58,15 @@ eleventyExcludeFromCollections: true
     <div class="meta">{{ article.author }} &middot; {{ article.date | dateStr }}</div>
     <h1>{{ article.title }}</h1>
     <div style="margin-bottom:28px;">
-      {% for c in article.category %}<a class="tag-pill" href="/articles/category/{{ c.value | slugify }}/" style="background:var(--navy); color:var(--off-white); border-color:var(--navy);">{{ c.value }}</a>{% endfor %}
-      {% for t in article.tags %}<span class="tag-pill">{{ t.value }}</span>{% endfor %}
+      {% for c in article.category | catList %}<a class="tag-pill" href="/articles/category/{{ c | slugify }}/" style="background:var(--navy); color:var(--off-white); border-color:var(--navy);">{{ c }}</a>{% endfor %}
+      {% for t in article.tags | catList %}<span class="tag-pill">{{ t }}</span>{% endfor %}
     </div>
     {% if article.image %}<img class="cover" src="{{ article.image }}" alt="{{ article.title }}">{% endif %}
     <div class="body-content">{{ article.body | markdownify | safe }}</div>
     {% if article.sources and article.sources.length %}
     <div class="sources">
       <h3>Sources</h3>
-      <ul>{% for s in article.sources %}<li>{{ s.source }}</li>{% endfor %}</ul>
+      <ul>{% for s in article.sources %}<li>{{ s | itemVal }}</li>{% endfor %}</ul>
     </div>
     {% endif %}
 
