@@ -22,6 +22,7 @@ h1{font-family:var(--serif); font-weight:500; font-size:clamp(30px,4.5vw,44px); 
 .body-content{font-size:17px;}
 .body-content p{margin-bottom:20px;}
 .body-content ul, .body-content ol{margin:0 0 20px 24px;}
+.body-content p + ul, .body-content p + ol{margin-top:-12px;}
 .body-content ul{list-style:disc;}
 .body-content ol{list-style:decimal;}
 .body-content li{margin-bottom:8px;}
