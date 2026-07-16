@@ -10,7 +10,7 @@ collections:
   - name: "articles"
     label: "Articles"
     label_singular: "Article"
-    folder: "content/articles"
+    folder: "src/content/articles"
     create: true
     format: "json"
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
