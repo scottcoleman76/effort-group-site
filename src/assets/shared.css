@@ -21,6 +21,10 @@ h1{font-family:var(--serif); font-weight:500; font-size:clamp(30px,4.5vw,44px); 
 .cover{width:100%; border-radius:2px; margin-bottom:36px;}
 .body-content{font-size:17px;}
 .body-content p{margin-bottom:20px;}
+.body-content ul, .body-content ol{margin:0 0 20px 24px;}
+.body-content ul{list-style:disc;}
+.body-content ol{list-style:decimal;}
+.body-content li{margin-bottom:8px;}
 .body-content h2, .body-content h3{font-family:var(--serif); color:var(--navy); margin:32px 0 14px;}
 .body-content img{max-width:100%; border-radius:2px; margin:24px 0;}
 .body-content blockquote{border-left:3px solid var(--teal); padding-left:18px; color:#4a4a48; margin:24px 0;}
