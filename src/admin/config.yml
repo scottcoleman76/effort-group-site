@@ -3,7 +3,7 @@ backend:
   branch: main
 
 publish_mode: simple
-media_folder: "articles-media"
+media_folder: "src/articles-media"
 public_folder: "/articles-media"
 
 collections:
