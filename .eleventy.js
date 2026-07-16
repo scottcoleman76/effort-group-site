@@ -20,6 +20,11 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("hasCat", (arr, name) =>
     (arr || []).some((c) => (typeof c === "string" ? c : c.value) === name)
   );
+  eleventyConfig.addFilter("itemVal", (item) => {
+    if (typeof item === "string") return item;
+    if (item && typeof item === "object") return Object.values(item)[0];
+    return "";
+  });
 
   return {
     dir: {
