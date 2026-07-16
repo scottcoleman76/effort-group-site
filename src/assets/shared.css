@@ -30,7 +30,7 @@ h1{font-family:var(--serif); font-weight:500; font-size:clamp(30px,4.5vw,44px); 
 .body-content h2{font-family:var(--serif); color:var(--navy); font-size:28px; font-weight:500; margin:32px 0 14px;}
 .body-content h3{font-family:var(--serif); color:var(--navy); font-size:23px; font-weight:500; margin:28px 0 12px;}
 .body-content h4{font-family:var(--serif); color:var(--navy); font-size:20px; font-weight:500; margin:24px 0 10px;}
-.body-content h5{font-family:var(--sans); color:var(--navy); font-size:18px; font-weight:600; margin:20px 0 8px;}
+.body-content h5{font-family:var(--sans); color:var(--navy); font-size:19.5px; font-weight:600; margin:40px 0 8px;}
 .body-content h6{font-family:var(--sans); color:var(--navy); font-size:17px; font-weight:600; text-transform:uppercase; letter-spacing:.03em; margin:20px 0 8px;}
 .body-content img{max-width:100%; border-radius:2px; margin:24px 0;}
 .body-content blockquote{border-left:3px solid var(--teal); padding-left:18px; color:#4a4a48; margin:24px 0;}
