@@ -14,6 +14,12 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("initials", (name) =>
     (name || "").split(" ").map((w) => w[0]).join("").slice(0, 2).toUpperCase()
   );
+  eleventyConfig.addFilter("catList", (arr) =>
+    (arr || []).map((c) => (typeof c === "string" ? c : c.value)).filter(Boolean)
+  );
+  eleventyConfig.addFilter("hasCat", (arr, name) =>
+    (arr || []).some((c) => (typeof c === "string" ? c : c.value) === name)
+  );
 
   return {
     dir: {
