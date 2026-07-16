@@ -36,7 +36,7 @@ eleventyExcludeFromCollections: true
       {% for a in articles %}
       <a class="card article-card" href="/articles/{{ a.slug }}/"
          data-title="{{ a.title | lower }}" data-excerpt="{{ a.excerpt | lower }}">
-        <div class="meta">{{ a.author }} &middot; {{ a.date | dateStr }}{% if a.category and a.category.length %} &middot; {{ a.category | join(', ') }}{% endif %}</div>
+        <div class="meta">{{ a.author }} &middot; {{ a.date | dateStr }}{% set catVals = a.category | catList %}{% if catVals.length %} &middot; {{ catVals | join(', ') }}{% endif %}</div>
         <h2>{{ a.title }}</h2>
         <p>{{ a.excerpt }}</p>
       </a>
