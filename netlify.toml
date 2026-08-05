@@ -1,3 +1,20 @@
 [build]
   command = "npm run build"
   publish = "_site"
+
+# --- Legacy article URLs -------------------------------------------------
+# 2026-08-05: this article was published with curly apostrophes (U+2019) in
+# its filename, which made the URL non-ASCII. It was renamed to a clean ASCII
+# slug. Both encodings of the old URL are redirected so any link already
+# shared keeps working. Percent-encoded form first — that is what browsers
+# and crawlers actually send on the wire.
+
+[[redirects]]
+  from = "/articles/2026-07-28-strategy-isn%E2%80%99t-a-plan-it%E2%80%99s-how-you-win/"
+  to = "/articles/2026-07-28-strategy-isnt-a-plan-its-how-you-win/"
+  status = 301
+
+[[redirects]]
+  from = "/articles/2026-07-28-strategy-isn’t-a-plan-it’s-how-you-win/"
+  to = "/articles/2026-07-28-strategy-isnt-a-plan-its-how-you-win/"
+  status = 301
