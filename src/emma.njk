@@ -1,0 +1,137 @@
+---
+permalink: "/emma/index.html"
+eleventyExcludeFromCollections: true
+---
+{% set me = authors["Emma Coleman"] %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emma Coleman — Brand & Content Portfolio | The Effort Group</title>
+<meta name="description" content="Selected brand, campaign, editorial and print work by Emma Coleman — brand and content at The Effort Group.">
+<link rel="canonical" href="https://theeffortgroup.com/emma/">
+
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Emma Coleman — Brand & Content Portfolio">
+<meta property="og:description" content="Selected brand, campaign, editorial and print work by Emma Coleman.">
+<meta property="og:url" content="https://theeffortgroup.com/emma/">
+<meta property="og:image" content="https://theeffortgroup.com{{ portfolio.items[0].thumb }}">
+<meta name="twitter:card" content="summary_large_image">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Emma Coleman",
+  "jobTitle": {{ me.title | json | safe }},
+  "description": {{ me.bio | json | safe }},
+  "url": "https://theeffortgroup.com/emma/"
+  {% if me.linkedin %}, "sameAs": [{{ me.linkedin | json | safe }}]{% endif %},
+  "worksFor": { "@type": "Organization", "name": "The Effort Group", "url": "https://theeffortgroup.com" }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/shared.css">
+<style>
+  .pf-wrap{max-width:1120px; margin:0 auto; padding:0 32px;}
+  .pf-intro{max-width:60ch; margin-bottom:14px;}
+  .pf-intro .role{font-family:var(--mono); font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--teal); margin-bottom:14px;}
+  .pf-intro p{color:#4a4a48; font-size:16.5px;}
+  .pf-links{display:flex; gap:20px; align-items:center; margin:22px 0 8px; flex-wrap:wrap;}
+  .pf-links a{font-size:14px; font-weight:600;}
+
+  .pf-section{margin-top:64px;}
+  .pf-section > h2{
+    font-family:var(--mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--teal); font-weight:500; margin-bottom:22px;
+    padding-bottom:12px; border-bottom:1px solid rgba(10,37,64,0.12);
+  }
+  .pf-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:26px;}
+  .pf-tile{
+    display:flex; flex-direction:column; background:#fff;
+    border:1px solid rgba(10,37,64,0.12); border-radius:2px; overflow:hidden;
+    transition:border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+  }
+  .pf-tile:hover, .pf-tile:focus-visible{
+    border-color:var(--teal); transform:translateY(-3px);
+    box-shadow:0 10px 24px rgba(10,37,64,0.10);
+  }
+  .pf-tile:focus-visible{outline:2px solid var(--teal); outline-offset:2px;}
+  .pf-thumb{
+    aspect-ratio:4/3; background:var(--off-white); overflow:hidden;
+    border-bottom:1px solid rgba(10,37,64,0.10);
+  }
+  .pf-thumb img{width:100%; height:100%; object-fit:cover; object-position:top center;}
+  .pf-body{padding:20px 22px 22px; display:flex; flex-direction:column; flex:1;}
+  .pf-body h3{font-family:var(--serif); font-weight:500; font-size:19px; color:var(--navy); line-height:1.25; margin-bottom:10px;}
+  .pf-body p{font-size:14px; color:#4a4a48; line-height:1.5; margin-bottom:14px;}
+  .pf-credit{font-size:12.5px; color:#7a7a77; margin-bottom:14px;}
+  .pf-foot{
+    margin-top:auto; display:flex; justify-content:space-between; align-items:center;
+    font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:#7a7a77;
+  }
+  .pf-foot .open{color:var(--teal); font-weight:500;}
+
+  @media (max-width:900px){ .pf-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:620px){ .pf-grid{grid-template-columns:1fr;} .pf-wrap{padding:0 22px;} }
+</style>
+{% include "analytics.html" %}
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/">The Effort Group</a>
+    <a class="back" href="/">&larr; Back to site</a>
+  </div>
+</header>
+
+<main>
+  <div class="pf-wrap">
+    <div class="pf-intro">
+      <h1 class="page-title">Emma Coleman</h1>
+      <div class="role">{{ me.title }}{% if me.credentials %} &middot; {{ me.credentials }}{% endif %}</div>
+      <p>{{ me.bio }}</p>
+      <div class="pf-links">
+        {% if me.linkedin %}<a href="{{ me.linkedin }}" target="_blank" rel="noopener noreferrer">LinkedIn &rarr;</a>{% endif %}
+        <a href="/#about">Get in touch &rarr;</a>
+      </div>
+    </div>
+
+    {% for group in portfolio.groups %}
+    <section class="pf-section">
+      <h2>{{ group.category }}</h2>
+      <div class="pf-grid">
+        {% for p in group.items %}
+        <a class="pf-tile" href="{{ p.file }}" target="_blank" rel="noopener noreferrer">
+          <div class="pf-thumb"><img src="{{ p.thumb }}" alt="{{ p.title }}" loading="lazy"></div>
+          <div class="pf-body">
+            <h3>{{ p.title }}</h3>
+            <p>{{ p.description }}</p>
+            {% if p.collaborators and p.collaborators.length %}
+            <div class="pf-credit">Team project with {{ p.collaborators | join(" and ") }}{% if p.role %} &middot; {{ p.role }}{% endif %}</div>
+            {% endif %}
+            <div class="pf-foot">
+              <span>{{ p.pages }} page{% if p.pages != 1 %}s{% endif %} &middot; PDF</span>
+              <span class="open">View &rarr;</span>
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </section>
+    {% endfor %}
+  </div>
+</main>
+
+<footer style="background:var(--black); color:#9a9a97; padding:44px 0; font-size:13px; margin-top:40px;">
+  <div class="pf-wrap" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px;">
+    <a href="/" style="color:#9a9a97;">The Effort Group</a>
+    <span>&copy; 2026 Effort, LLC. Omaha, Nebraska.</span>
+  </div>
+</footer>
+</body>
+</html>
