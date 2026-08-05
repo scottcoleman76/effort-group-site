@@ -13,12 +13,12 @@ eleventyExcludeFromCollections: true
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{ article.title }} | The Effort Group</title>
 <meta name="description" content="{{ article.excerpt }}">
-<link rel="canonical" href="https://theeffortgroup.com/articles/{{ article.slug }}/">
+<link rel="canonical" href="https://theeffortgroup.com/articles/{{ article.slug | urlencode }}/">
 
 <meta property="og:type" content="article">
 <meta property="og:title" content="{{ article.title }}">
 <meta property="og:description" content="{{ article.excerpt }}">
-<meta property="og:url" content="https://theeffortgroup.com/articles/{{ article.slug }}/">
+<meta property="og:url" content="https://theeffortgroup.com/articles/{{ article.slug | urlencode }}/">
 {% if article.image %}<meta property="og:image" content="{{ article.image }}">{% endif %}
 <meta name="twitter:card" content="summary_large_image">
 
