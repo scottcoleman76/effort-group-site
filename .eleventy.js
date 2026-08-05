@@ -3,6 +3,7 @@ const markdownIt = require("markdown-it")({ html: true, linkify: true });
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
   eleventyConfig.addPassthroughCopy({ "src/articles-media": "articles-media" });
+  eleventyConfig.addPassthroughCopy({ "src/portfolio-media": "portfolio-media" });
   eleventyConfig.addPassthroughCopy({ "src/admin": "admin" });
   eleventyConfig.addPassthroughCopy({ "src/robots.txt": "robots.txt" });
 
