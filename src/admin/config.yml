@@ -3,6 +3,15 @@ backend:
   branch: main
 
 publish_mode: simple
+
+# Force filenames (and therefore URLs) to plain ASCII. Without this, Decap
+# defaults to unicode slugs, which let curly apostrophes and other smart
+# punctuation from article titles into the filename and produced URLs that
+# had to be percent-encoded everywhere. See CHANGED-FILES.md, 2026-08-05.
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "-"
 media_folder: "src/articles-media"
 public_folder: "/articles-media"
 
