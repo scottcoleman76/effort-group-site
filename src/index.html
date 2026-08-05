@@ -126,12 +126,30 @@
   .team-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:28px;}
   .team-card{
     background:var(--navy-2); border:1px solid rgba(242,242,242,0.08);
-    padding:32px 28px; border-radius:2px;
+    padding:32px 28px; border-radius:2px; position:relative;
   }
-  .team-card .name{font-family:var(--serif); font-weight:500; font-size:22px; margin-bottom:4px;}
-  .team-card .role{font-family:var(--mono); font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--teal); margin-bottom:18px; display:block;}
+  .team-card .name{font-family:var(--serif); font-weight:500; font-size:22px; margin-bottom:4px; padding-right:44px;}
+  .team-card .role{font-family:var(--mono); font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--teal); margin-bottom:6px; display:block;}
+  .team-card .creds{font-size:12.5px; color:#8FA3B8; margin-bottom:18px;}
   .team-card p{font-size:14.5px; color:#C9D3DD; margin-bottom:18px;}
+  .team-linkedin{
+    position:absolute; top:30px; right:28px;
+    display:inline-flex; align-items:center; justify-content:center;
+    width:30px; height:30px; border-radius:2px;
+    color:#8FA3B8; border:1px solid rgba(11,123,158,0.5);
+    transition:color .2s ease, background .2s ease, border-color .2s ease;
+  }
+  .team-linkedin:hover, .team-linkedin:focus-visible{
+    color:var(--off-white); background:var(--teal); border-color:var(--teal);
+  }
+  .team-linkedin:focus-visible{outline:2px solid var(--off-white); outline-offset:2px;}
+  .team-linkedin svg{width:15px; height:15px; fill:currentColor; display:block;}
   .strengths{display:flex; flex-wrap:wrap; gap:8px;}
+  .team-portfolio{
+    display:inline-block; margin-top:16px; font-size:13.5px; font-weight:600;
+    color:var(--teal); border-bottom:1px solid rgba(11,123,158,0.45); padding-bottom:2px;
+  }
+  .team-portfolio:hover{color:var(--off-white); border-bottom-color:var(--off-white);}
   .strengths span{
     font-family:var(--mono); font-size:10.5px; letter-spacing:.04em;
     border:1px solid rgba(11,123,158,0.5); color:#8FA3B8;
@@ -276,33 +294,25 @@
       <p>The Effort Group is built on decades of firsthand leadership, not just theory.</p>
     </div>
     <div class="team-grid">
-
+      {% for name, person in authors %}
       <div class="team-card">
-        <div class="name">Angie Coleman, MSIOP</div>
-        <span class="role">Organizational Development &amp; Executive Coach</span>
-        <p>Industrial-organizational psychology practitioner with 10+ years partnering with CEOs, boards, and senior executives on talent strategy, succession, and culture. ICF-certified coach.</p>
+        {% if person.linkedin %}
+        <a class="team-linkedin" href="{{ person.linkedin }}" target="_blank" rel="noopener noreferrer" aria-label="{{ name }} on LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+        </a>
+        {% endif %}
+        <div class="name">{{ name }}</div>
+        <span class="role">{{ person.title }}</span>
+        {% if person.credentials %}<div class="creds">{{ person.credentials }}</div>{% endif %}
+        <p>{{ person.bio }}</p>
+        {% if person.strengths %}
         <div class="strengths">
-          <span>Harmony</span><span>Relator</span><span>Responsibility</span><span>Individualization</span><span>Learner</span>
+          {% for s in person.strengths %}<span>{{ s }}</span>{% endfor %}
         </div>
+        {% endif %}
+        {% if person.portfolio %}<a class="team-portfolio" href="{{ person.portfolio }}">View portfolio &rarr;</a>{% endif %}
       </div>
-
-      <div class="team-card">
-        <div class="name">Scott Coleman</div>
-        <span class="role">Strategic &amp; Commercial Advisor</span>
-        <p>Decades of senior leadership experience in pricing strategy, commercial optimization, and organizational growth, built across major logistics and rail organizations.</p>
-        <div class="strengths">
-          <span>Futuristic</span><span>Learner</span><span>Ideation</span><span>Belief</span><span>Deliberative</span><span>Strategic</span><span>Relator</span>
-        </div>
-      </div>
-
-      <div class="team-card">
-        <div class="name">Emma Coleman</div>
-        <span class="role">Brand &amp; Content</span>
-        <p>Design-minded and detail-driven, Emma brings brand consistency and creative execution to how The Effort Group shows up, from content to visual identity.</p>
-        <div class="strengths">
-          <span>Discipline</span><span>Input</span><span>Intellection</span><span>Learner</span><span>Achiever</span>
-        </div>
-      </div>
+      {% endfor %}
 
     </div>
   </div>
