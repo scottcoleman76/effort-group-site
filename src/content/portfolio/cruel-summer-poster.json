@@ -1,0 +1,12 @@
+{
+  "slug": "cruel-summer-poster",
+  "order": 10,
+  "category": "Print & Poster",
+  "pages": 1,
+  "draft": true,
+  "title": "Cruel Summer — Editorial Poster",
+  "description": "An editorial-style poster treating a single track as a newspaper front page, pairing heavy condensed headline type with an inflated three-dimensional display treatment.",
+  "note": "HELD FROM THE LIVE PAGE. The artwork contains two spelling errors: the headline reads THIS FORCAST (should be FORECAST) and the track credit reads CRULE SUMMER (should be CRUEL SUMMER). Fix the source file, re-export, then set draft to false to publish.",
+  "file": "/portfolio-media/cruel-summer-poster.pdf",
+  "thumb": "/portfolio-media/cruel-summer-poster.jpg"
+}
